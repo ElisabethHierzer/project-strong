@@ -1,8 +1,122 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f5d50"><title>Project Strong</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><link rel="apple-touch-icon" href="icon-192.png"></head><body>
-<header><div><h1>Project Strong</h1><p>Trainingsblock 2 · Elisabeth</p></div><button id="exportTop">⇩</button></header>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1f5d50">
+  <title>Project Strong</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+<header>
+  <div>
+    <h1>Project Strong</h1>
+    <p>Trainingsblock 2 · Elisabeth · v0.2</p>
+  </div>
+  <button id="exportTop" aria-label="Backup exportieren">⇩</button>
+</header>
+
 <main>
-<section id="home" class="view active"><div class="grid"><div class="card"><span>HWS</span><b id="hws">–</b></div><div class="card"><span>Knie</span><b id="knee">–</b></div><div class="card"><span>Einheiten</span><b id="count">0</b></div></div><button class="big primary start" data-plan="A">Training A starten</button><button class="big primary start" data-plan="B">Training B starten</button><button class="big secondary" id="resetStart">Rücken-Reset</button><div class="card"><h2>Letzte Einheit</h2><p id="last">Noch keine Einheit gespeichert.</p></div><div class="card"><h2>Backup</h2><p>Daten bleiben lokal. Backup regelmäßig in iCloud Drive speichern.</p><div class="row"><button id="export" class="secondary">Exportieren</button><label class="secondary file">Importieren<input id="import" type="file" accept=".json" hidden></label></div></div></section>
-<section id="train" class="view"><div class="top"><button id="homeBtn">←</button><div><h2 id="title"></h2><p id="progress"></p></div></div><div class="card"><div class="exhead"><div><small id="block"></small><h2 id="name"></h2></div><a id="video" target="_blank">Video</a></div><p id="why"></p><p id="cue" class="cue"></p><p id="prev" class="muted"></p></div><div id="sets"></div><div class="card timer"><div><span>Pause</span><b id="timer">01:00</b></div><div class="row"><button class="secondary preset" data-s="60">60 s</button><button class="secondary preset" data-s="90">90 s</button><button id="timerStart" class="primary">Start</button></div></div><div class="row sticky"><button id="prevBtn" class="secondary">Zurück</button><button id="nextBtn" class="primary">Weiter</button></div></section>
-<section id="check" class="view"><div class="top"><button id="backBtn">←</button><h2>Abschluss-Check</h2></div><div class="card form"><label>HWS 0–10<input id="hwsIn" type="range" min="0" max="10" value="0"><output id="hwsOut">0</output></label><label>Knie 0–10<input id="kneeIn" type="range" min="0" max="10" value="0"><output id="kneeOut">0</output></label><label>Energie 1–5<input id="energyIn" type="range" min="1" max="5" value="4"><output id="energyOut">4</output></label><label>Notiz<textarea id="note" rows="3"></textarea></label></div><button id="save" class="big primary">Einheit speichern</button></section>
-<section id="reset" class="view"><div class="top"><button id="resetBack">←</button><h2>10-Minuten Rücken-Reset</h2></div><div id="resetList"></div></section>
-</main><script src="app.js"></script></body></html>
+  <section id="home" class="view active">
+    <div class="grid">
+      <div class="card"><span>HWS</span><b id="hws">–</b></div>
+      <div class="card"><span>Knie</span><b id="knee">–</b></div>
+      <div class="card"><span>Einheiten</span><b id="count">0</b></div>
+    </div>
+
+    <button class="big primary start" data-plan="A">Training A starten</button>
+    <button class="big primary start" data-plan="B">Training B starten</button>
+    <button class="big secondary" id="resetStart">Rücken-Reset</button>
+
+    <div class="card">
+      <h2>Letzte Einheit</h2>
+      <p id="last">Noch keine Einheit gespeichert.</p>
+    </div>
+
+    <div class="card">
+      <h2>Backup</h2>
+      <p>Daten bleiben lokal auf diesem Gerät. Backup regelmäßig speichern.</p>
+      <div class="row">
+        <button id="export" class="secondary">Exportieren</button>
+        <label class="secondary file">Importieren<input id="import" type="file" accept=".json" hidden></label>
+      </div>
+    </div>
+  </section>
+
+  <section id="train" class="view">
+    <div class="top">
+      <button id="homeBtn" aria-label="Zur Startseite">←</button>
+      <div>
+        <h2 id="title"></h2>
+        <p id="progress"></p>
+      </div>
+    </div>
+
+    <div class="roundBadge">
+      <span id="supersetLabel"></span>
+      <b id="roundLabel"></b>
+    </div>
+
+    <div class="card">
+      <div class="exhead">
+        <div>
+          <small id="block"></small>
+          <h2 id="name"></h2>
+        </div>
+        <a id="video" target="_blank" rel="noopener">Video</a>
+      </div>
+      <p id="why"></p>
+      <p id="cue" class="cue"></p>
+      <p id="prev" class="muted"></p>
+    </div>
+
+    <div id="entry"></div>
+
+    <div class="row sticky">
+      <button id="prevBtn" class="secondary">Zurück</button>
+      <button id="nextBtn" class="primary">Weiter</button>
+    </div>
+  </section>
+
+  <section id="pause" class="view">
+    <div class="pauseCard">
+      <small id="pauseLabel"></small>
+      <h2>Pause</h2>
+      <b id="timer">01:00</b>
+      <p id="pauseNext" class="muted"></p>
+      <div class="row">
+        <button class="secondary preset" data-s="60">60 s</button>
+        <button class="secondary preset" data-s="90">90 s</button>
+      </div>
+      <button id="skipPause" class="big primary">Weiter</button>
+    </div>
+  </section>
+
+  <section id="check" class="view">
+    <div class="top">
+      <button id="backBtn">←</button>
+      <h2>Abschluss-Check</h2>
+    </div>
+    <div class="card form">
+      <label>HWS 0–10<input id="hwsIn" type="range" min="0" max="10" value="10"><output id="hwsOut">10</output></label>
+      <label>Knie 0–10<input id="kneeIn" type="range" min="0" max="10" value="10"><output id="kneeOut">10</output></label>
+      <label>Energie 1–5<input id="energyIn" type="range" min="1" max="5" value="4"><output id="energyOut">4</output></label>
+      <label>Notiz<textarea id="note" rows="3"></textarea></label>
+    </div>
+    <button id="save" class="big primary">Einheit speichern</button>
+  </section>
+
+  <section id="reset" class="view">
+    <div class="top">
+      <button id="resetBack">←</button>
+      <h2>10-Minuten Rücken-Reset</h2>
+    </div>
+    <div id="resetList"></div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

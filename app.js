@@ -1,24 +1,76 @@
-const P = {
-A: [
-  {b:"A1",g:"A",n:"Goblet Squat",s:3,type:"weight",r:"8–10",l:"16 kg",w:"Beine und Core bei stabiler Knieachse.",c:"Breiter angenehmer Stand, langsam absenken.",v:"https://www.youtube.com/results?search_query=goblet+squat+technique"},
-  {b:"A2",g:"A",n:"Chest Supported Row",s:3,type:"weight",r:"8–10",l:"6 kg",w:"Mittlerer Rücken ohne unnötige HWS-Belastung.",c:"Brust an der Bank, Nacken lang, Ellbogen Richtung Hüfte.",v:"https://www.youtube.com/results?search_query=chest+supported+dumbbell+row+technique"},
-  {b:"B1",g:"B",n:"Dumbbell Bench Press",aliases:["Floor Press"],s:3,type:"weight",r:"8–10",l:"8 kg",w:"Druckkraft bei stabilem Handgelenk und kontrollierter Schulterposition.",c:"Flache Bank, halbneutraler Griff, Ellbogen ca. 30–45°, Schulterblätter sanft zurück/unten, Nacken locker.",v:"https://www.youtube.com/results?search_query=dumbbell+bench+press+neutral+grip+technique"},
-  {b:"B2",g:"B",n:"Bulgarian Split Squat",s:3,type:"unilateralWeight",r:"8–10/Seite",l:"7 kg/Hand",w:"Einbeinige Kraft und Kniesicherheit.",c:"Vorderer Fuß arbeitet, sauber ausrichten. Schwächere Seite bestimmt die Steigerung.",v:"https://www.youtube.com/results?search_query=bulgarian+split+squat+technique"},
-  {b:"C1",g:"C",n:"Trap-3 Raise",s:3,type:"weight",r:"10–12",l:"0,5 kg",w:"Unterer Trapez und Schulterblattkontrolle.",c:"Sehr leicht, Arm in Y-Richtung, Daumen nach oben, Schulter weg vom Ohr, HWS neutral.",v:"https://www.youtube.com/results?search_query=trap+3+raise+exercise"},
-  {b:"C2",g:"C",n:"Pallof Press",s:3,type:"unilateralBand",r:"10/Seite",l:"grün/rot",w:"Anti-Rotation und Core-Stabilität.",c:"Rippen unten, Becken ruhig, kontrolliert ausstrecken.",v:"https://www.youtube.com/results?search_query=pallof+press+technique"},
-  {b:"Finisher",g:"Finisher",n:"Suitcase Carry",s:3,type:"unilateralTime",r:"30 s/Seite",l:"12 kg",w:"Seitliche Rumpfstabilität.",c:"Nur eine Hantel, aufrecht bleiben, Schulter tief, nicht zur Seite kippen.",v:"https://www.youtube.com/results?search_query=suitcase+carry+technique"}
-],
-B: [
-  {b:"A1",g:"A",n:"B-Stance RDL",s:3,type:"unilateralWeight",r:"8–10/Seite",l:"14 kg",w:"Hintere Kette mit Seitenfokus.",c:"Hinterer Fuß nur als Stütze, Hüfte nach hinten, Nacken neutral.",v:"https://www.youtube.com/results?search_query=b+stance+romanian+deadlift+technique"},
-  {b:"A2",g:"A",n:"Band Pulldown",s:3,type:"band",r:"10–12",l:"schwarz + rot",w:"Lat und Rückenbreite.",c:"Ellbogen Richtung Hosentaschen, Schulterblätter tief.",v:"https://www.youtube.com/results?search_query=resistance+band+lat+pulldown+technique"},
-  {b:"B1",g:"B",n:"Reverse Split Squat",s:3,type:"unilateralWeight",r:"8/Seite",l:"8 kg/Hand",w:"Einbeinige Kraft mit kontrollierter Beinachse.",c:"Kontrolliert senken, vorderes Bein arbeitet, sauber aufrichten.",v:"https://www.youtube.com/results?search_query=reverse+split+squat+technique"},
-  {b:"B2",g:"B",n:"Schulterdrücken",s:3,type:"weight",r:"8–10",l:"6 kg",w:"Kontrollierte Schulterkraft.",c:"Leicht und sauber, Rippen unten, Nacken lang. Bei HWS-Reizung abbrechen.",v:"https://www.youtube.com/results?search_query=seated+dumbbell+shoulder+press+technique"},
-  {b:"C1",g:"C",n:"Lateral Walks",s:3,type:"unilateralBand",r:"12/Seite",l:"blau",w:"Gluteus medius und Beinachse.",c:"Kleine kontrollierte Schritte, Bandspannung halten.",v:"https://www.youtube.com/results?search_query=banded+lateral+walk+technique"},
-  {b:"C2",g:"C",n:"Reverse Crunch",s:3,type:"body",r:"10–12",l:"Körpergewicht",w:"Unterer Bauch und Beckenkontrolle.",c:"Becken einrollen, kein Schwung.",v:"https://www.youtube.com/results?search_query=reverse+crunch+proper+form"},
-  {b:"Finisher",g:"Finisher",n:"Marching Carry",s:3,type:"time",r:"30–40 s",l:"14–15 kg/Hand",w:"Core, Griffkraft und Kondition.",c:"Langsam marschieren, aufrecht bleiben, Schultern tief.",v:"https://www.youtube.com/results?search_query=marching+farmer+carry+technique"}
-]};
+const PLAN = {
+A: {
+  groups: [
+    {
+      id:"A", title:"Supersatz A",
+      exercises:[
+        {code:"A1",name:"Heel-Elevated Goblet Squat",type:"weight",reps:"8–10",start:"17 kg",why:"Quadrizeps, Core und skispezifische Bremskraft.",cue:"Fersen leicht erhöht. 3 Sekunden kontrolliert absenken, stabil hochdrücken.",video:"https://www.youtube.com/results?search_query=heel+elevated+goblet+squat+technique"},
+        {code:"A2",name:"Chest Supported Row",type:"weight",reps:"10–12",start:"6 kg",why:"Mittlerer Rücken mit wenig unnötiger HWS-Belastung.",cue:"Brust an der Bank, Nacken lang, Ellbogen Richtung Hüfte.",video:"https://www.youtube.com/results?search_query=chest+supported+dumbbell+row+technique"}
+      ]
+    },
+    {
+      id:"B", title:"Supersatz B",
+      exercises:[
+        {code:"B1",name:"Bulgarian Split Squat",type:"unilateralWeight",reps:"8/Seite",start:"7 kg/Hand",why:"Einbeinige Kraft, Beinachse und Bremskontrolle.",cue:"3 Sekunden absenken. Vorderes Bein arbeitet, Knie sauber führen.",video:"https://www.youtube.com/results?search_query=bulgarian+split+squat+technique"},
+        {code:"B2",name:"Dumbbell Bench Press",type:"weight",reps:"8–10",start:"8 kg",why:"Druckkraft bei stabilem Handgelenk und kontrollierter Schulterposition.",cue:"Halbneutraler Griff, Ellbogen ca. 30–45°, Schulterblätter sanft zurück/unten.",video:"https://www.youtube.com/results?search_query=dumbbell+bench+press+neutral+grip+technique"}
+      ]
+    },
+    {
+      id:"C", title:"Supersatz C",
+      exercises:[
+        {code:"C1",name:"Lateral Step-Down",type:"unilateralBody",reps:"8–10/Seite",start:"Körpergewicht",why:"Kontrolliertes Abfangen für Knie und Ski-Abfahrten.",cue:"Von niedriger Stufe langsam absenken, Becken stabil, Knie folgt Fußrichtung.",video:"https://www.youtube.com/results?search_query=lateral+step+down+exercise+technique"},
+        {code:"C2",name:"Pallof Press",type:"unilateralBand",reps:"10–12/Seite",start:"Band nach Gefühl",why:"Anti-Rotation und stabile Körpermitte.",cue:"Rippen unten, Becken ruhig, kontrolliert ausstrecken.",video:"https://www.youtube.com/results?search_query=pallof+press+technique"}
+      ]
+    }
+  ],
+  finisher:{
+    title:"Ski Finisher A · 6 Minuten",
+    exercises:[
+      {name:"Wall Sit",cue:"30 Sek. halten · Rücken stabil · gleichmäßig atmen"},
+      {name:"Zügiges Marching",cue:"30 Sek. · Arme aktiv mitnehmen"},
+      {name:"Wall Sit",cue:"30 Sek. halten"},
+      {name:"Zügiges Marching",cue:"30 Sek."}
+    ],
+    rounds:3
+  }
+},
+B: {
+  groups: [
+    {
+      id:"A", title:"Supersatz A",
+      exercises:[
+        {code:"A1",name:"B-Stance RDL",type:"unilateralWeight",reps:"8–10/Seite",start:"14 kg",why:"Hintere Kette mit Seitenfokus und Hüftkontrolle.",cue:"Hinterer Fuß nur als Stütze, Hüfte zurück, Nacken neutral.",video:"https://www.youtube.com/results?search_query=b+stance+romanian+deadlift+technique"},
+        {code:"A2",name:"Band Pulldown",type:"band",reps:"10–12",start:"Band nach Gefühl",why:"Lat und Schulterblattkontrolle.",cue:"Ellbogen Richtung Hosentaschen, Schultern weg von den Ohren.",video:"https://www.youtube.com/results?search_query=resistance+band+lat+pulldown+technique"}
+      ]
+    },
+    {
+      id:"B", title:"Supersatz B",
+      exercises:[
+        {code:"B1",name:"Lateral Lunge",type:"unilateralWeight",reps:"8/Seite",start:"leicht starten",why:"Seitliche Kraft und Belastbarkeit für Richtungswechsel am Ski.",cue:"Hüfte nach hinten, belastetes Knie stabil über dem Fuß.",video:"https://www.youtube.com/results?search_query=lateral+lunge+technique"},
+        {code:"B2",name:"Half-Kneeling One-Arm Band Row",type:"unilateralBand",reps:"10/Seite",start:"Band nach Gefühl",why:"Rücken, Core und Schulterblattkontrolle.",cue:"Halbkniestand stabil, nicht rotieren, Ellbogen kontrolliert zurückziehen.",video:"https://www.youtube.com/results?search_query=half+kneeling+one+arm+band+row"}
+      ]
+    },
+    {
+      id:"C", title:"Supersatz C",
+      exercises:[
+        {code:"C1",name:"Single-Leg Calf Raise",type:"unilateralBody",reps:"12–15/Seite",start:"Körpergewicht",why:"Wadenkraft und Fuß-/Sprunggelenkstabilität.",cue:"Langsam hoch und tief, oben kurz halten, nicht ausweichen.",video:"https://www.youtube.com/results?search_query=single+leg+calf+raise+technique"},
+        {code:"C2",name:"Dead Bug mit Bandzug",type:"band",reps:"8/Seite",start:"leichtes Band",why:"Core-Stabilität bei Zugspannung.",cue:"Lendenwirbelsäule kontrolliert, Rippen unten, langsam arbeiten.",video:"https://www.youtube.com/results?search_query=dead+bug+resistance+band+pulldown"}
+      ]
+    }
+  ],
+  finisher:{
+    title:"Ski Finisher B · 6 Minuten",
+    exercises:[
+      {name:"Skater Step ohne Sprung",cue:"30 Sek. · seitlich von Bein zu Bein · kontrolliert"},
+      {name:"Fast Feet",cue:"30 Sek. · kleine schnelle Schritte am Platz"},
+      {name:"Skater Step ohne Sprung",cue:"30 Sek."},
+      {name:"Fast Feet",cue:"30 Sek."}
+    ],
+    rounds:3
+  }
+}};
 
-const R = [
+const RESET = [
   ["Cat Cow","8 Wiederholungen"],
   ["Wall Slides","10 Wiederholungen"],
   ["Band Pull Aparts","15 Wiederholungen"],
@@ -27,304 +79,381 @@ const R = [
   ["Farmer Hold","2 × 30 Sekunden"]
 ];
 
-const BAND_OPTIONS = ["","gelb","rot","grün","blau","schwarz","grün + rot","schwarz + rot","anderer"];
+const BANDS = ["gelb","rot","grün","blau","schwarz"];
 
-let S = {p:null, step:0, d:null, timerSeconds:60, timerHandle:null, flow:[]};
+let STATE = {
+  plan:null, group:0, session:null,
+  restSeconds:60, restHandle:null,
+  finIndex:0, finRound:0, finSeconds:30, finHandle:null, finRunning:false,
+  audioCtx:null
+};
 const $ = id => document.getElementById(id);
 
-function D(){
+function ensureAudio(){
+  try{
+    if(!STATE.audioCtx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) STATE.audioCtx = new AC();
+    }
+    if(STATE.audioCtx?.state === "suspended") STATE.audioCtx.resume();
+  }catch{}
+}
+function beep(freq=880,duration=0.12,volume=0.14){
+  try{
+    ensureAudio();
+    if(!STATE.audioCtx) return;
+    const ctx=STATE.audioCtx;
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type="sine";
+    osc.frequency.value=freq;
+    gain.gain.value=volume;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    const now=ctx.currentTime;
+    osc.start(now);
+    gain.gain.exponentialRampToValueAtTime(0.001,now+duration);
+    osc.stop(now+duration);
+  }catch{}
+}
+function intervalSignal(){
+  beep(980,0.10,0.16);
+  if(navigator.vibrate) navigator.vibrate(90);
+}
+function finishSignal(){
+  beep(880,0.12,0.16);
+  setTimeout(()=>beep(1175,0.16,0.18),150);
+  setTimeout(()=>beep(1568,0.22,0.20),330);
+  if(navigator.vibrate) navigator.vibrate([180,80,180]);
+}
+
+function store(){
   try { return JSON.parse(localStorage.getItem("PS") || '{"sessions":[]}'); }
   catch { return {sessions:[]}; }
 }
-function saveStore(x){ localStorage.setItem("PS", JSON.stringify(x)); home(); }
+function writeStore(data){ localStorage.setItem("PS",JSON.stringify(data)); refreshHome(); }
 function show(id){
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
   $(id).classList.add("active");
   window.scrollTo(0,0);
 }
-function home(){
-  const d=D(), a=d.sessions||[], l=a.at(-1);
+function refreshHome(){
+  const d=store(), a=d.sessions||[], last=a.at(-1);
   $("count").textContent=a.length;
-  $("hws").textContent=l ? `${l.hws}/10` : "–";
-  $("knee").textContent=l ? `${l.knee}/10` : "–";
-  $("last").textContent=l ? `${l.date} · Training ${l.plan} · Energie ${l.energy}/5` : "Noch keine Einheit gespeichert.";
+  $("hws").textContent=last?.hws!=null ? `${last.hws}/10` : "–";
+  $("knee").textContent=last?.knee!=null ? `${last.knee}/10` : "–";
+  $("last").textContent=last ? `${last.date} · Training ${last.plan} · Energie ${last.energy}/5` : "Noch keine Einheit gespeichert.";
 }
 
-function buildFlow(plan){
-  const ex=P[plan], flow=[];
-  ["A","B","C"].forEach(g=>{
-    const pair=ex.map((e,i)=>({e,i})).filter(x=>x.e.g===g);
-    for(let round=0;round<3;round++){
-      pair.forEach((x,pos)=>flow.push({kind:"exercise",index:x.i,round,group:g,pos,pairLength:pair.length}));
-      if(round<2) flow.push({kind:"pause",group:g,round,nextIndex:pair[0]?.i});
-    }
-  });
-  const fin=ex.map((e,i)=>({e,i})).find(x=>x.e.g==="Finisher");
-  if(fin){
-    for(let round=0;round<fin.e.s;round++){
-      flow.push({kind:"exercise",index:fin.i,round,group:"Finisher",pos:0,pairLength:1});
-      if(round<fin.e.s-1) flow.push({kind:"pause",group:"Finisher",round,nextIndex:fin.i});
-    }
-  }
-  return flow;
-}
-
-function emptySet(type){
-  if(type==="unilateralWeight") return {kg:"",repsL:"",rpeL:"",repsR:"",rpeR:""};
-  if(type==="unilateralBand") return {band:"",repsL:"",rpeL:"",repsR:"",rpeR:""};
-  if(type==="unilateralTime") return {kg:"",secL:"",rpeL:"",secR:"",rpeR:""};
-  if(type==="band") return {band:"",reps:"",rpe:""};
-  if(type==="body") return {reps:"",rpe:""};
-  if(type==="time") return {kg:"",sec:"",rpe:""};
+function blankSet(type){
+  if(type==="unilateralWeight") return {kg:"",repsL:"",repsR:"",rpe:""};
+  if(type==="unilateralBody") return {repsL:"",repsR:"",rpe:""};
+  if(type==="unilateralBand") return {bands:[],repsL:"",repsR:"",rpe:""};
+  if(type==="band") return {bands:[],reps:"",rpe:""};
   return {kg:"",reps:"",rpe:""};
 }
 
 function startTraining(plan){
-  S.p=plan; S.step=0; S.flow=buildFlow(plan);
-  S.d={
-    plan,
+  STATE.plan=plan; STATE.group=0;
+  STATE.session={
+    plan, block:"Ski Ready", appVersion:"0.3",
     date:new Date().toLocaleDateString("de-AT"),
-    appVersion:"0.2",
-    exercises:P[plan].map(e=>({name:e.n,sets:Array.from({length:e.s},()=>emptySet(e.type))}))
+    groups: PLAN[plan].groups.map(g=>({
+      id:g.id,
+      exercises:g.exercises.map(e=>({name:e.name,code:e.code,type:e.type,sets:Array.from({length:3},()=>blankSet(e.type))}))
+    })),
+    finisher:{completed:false}
   };
   $("title").textContent=`Training ${plan}`;
-  renderStep();
+  renderGroup();
 }
 
 document.querySelectorAll(".start").forEach(b=>b.onclick=()=>startTraining(b.dataset.plan));
 
-function findPrevExercise(e){
-  const names=[e.n,...(e.aliases||[])];
-  for(const s of (D().sessions||[]).slice().reverse()){
-    const hit=s.exercises?.find(x=>names.includes(x.name));
-    if(hit) return hit;
+function previousExercise(name){
+  const sessions=(store().sessions||[]).slice().reverse();
+  for(const s of sessions){
+    if(s.groups){
+      for(const g of s.groups){
+        const e=g.exercises?.find(x=>x.name===name);
+        if(e) return e;
+      }
+    }
+    if(s.exercises){
+      const e=s.exercises.find(x=>x.name===name);
+      if(e) return e;
+    }
   }
   return null;
 }
 
-function setSummary(s){
-  if(!s) return "";
-  if(s.band) {
-    if(s.repsL||s.repsR) return `${s.band} · L ${s.repsL||"–"}/R ${s.repsR||"–"} · RPE ${s.rpeL||"–"}/${s.rpeR||"–"}`;
-    return `${s.band} × ${s.reps||"–"} · RPE ${s.rpe||"–"}`;
-  }
-  if(s.secL||s.secR) return `${s.kg||"–"} kg · L ${s.secL||"–"} s/R ${s.secR||"–"} s · RPE ${s.rpeL||"–"}/${s.rpeR||"–"}`;
-  if(s.repsL||s.repsR) return `${s.kg||"–"} kg · L ${s.repsL||"–"}/R ${s.repsR||"–"} · RPE ${s.rpeL||"–"}/${s.rpeR||"–"}`;
-  if(s.sec) return `${s.kg||"–"} kg × ${s.sec||"–"} s · RPE ${s.rpe||"–"}`;
-  if(s.kg||s.reps||s.rpe) return `${s.kg||"–"} kg × ${s.reps||"–"} · RPE ${s.rpe||"–"}`;
-  return "";
+function formatPrev(e){
+  const p=previousExercise(e.name);
+  if(!p?.sets?.length) return `Start: ${e.start}`;
+  const s=p.sets[0]||{};
+  let parts=[];
+  if(s.kg) parts.push(`${s.kg} kg`);
+  if(s.bands?.length) parts.push(s.bands.join(" + "));
+  if(s.reps) parts.push(`${s.reps} Wdh.`);
+  if(s.repsL||s.repsR) parts.push(`L ${s.repsL||"–"} / R ${s.repsR||"–"}`);
+  return parts.length ? `Letztes Mal: ${parts.join(" · ")}` : `Start: ${e.start}`;
 }
 
-function previousRoundValue(e, round){
-  const p=findPrevExercise(e);
-  if(!p) return `Startwert: ${e.l}`;
-  const s=p.sets?.[round] || p.sets?.at(-1);
-  const text=setSummary(s);
-  return text ? `Letztes Mal · Satz ${round+1}: ${text}` : `Startwert: ${e.l}`;
+function input(label,field,val="",mode="decimal",extra=""){
+  return `<label class="${extra}">${label}<input inputmode="${mode}" data-field="${field}" value="${val??""}"></label>`;
 }
 
-function input(label, field, value="", mode="decimal", cls=""){
-  return `<label class="${cls}">${label}<input inputmode="${mode}" data-f="${field}" value="${value ?? ""}"></label>`;
-}
-function bandSelect(value=""){
-  return `<label class="wide">Band/Widerstand<select data-f="band">${
-    BAND_OPTIONS.map(x=>`<option value="${x}" ${x===value?"selected":""}>${x||"Auswählen"}</option>`).join("")
-  }</select></label>`;
-}
-
-function renderEntry(e,set){
-  if(e.type==="unilateralWeight"){
-    return `<div class="entryCard">
-      <div class="fieldGrid two">${input("kg/Hand","kg",set.kg)}</div>
-      ${sideBlock("Links","L",set,"reps")}
-      ${sideBlock("Rechts","R",set,"reps",true)}
-    </div>`;
-  }
-  if(e.type==="unilateralBand"){
-    return `<div class="entryCard">
-      <div class="fieldGrid">${bandSelect(set.band)}</div>
-      ${sideBlock("Links","L",set,"reps")}
-      ${sideBlock("Rechts","R",set,"reps",true)}
-    </div>`;
-  }
-  if(e.type==="unilateralTime"){
-    return `<div class="entryCard">
-      <div class="fieldGrid two">${input("kg","kg",set.kg)}</div>
-      ${sideBlock("Links","L",set,"sec")}
-      ${sideBlock("Rechts","R",set,"sec",true)}
-    </div>`;
-  }
-  if(e.type==="band"){
-    return `<div class="entryCard"><div class="fieldGrid">
-      ${bandSelect(set.band)}
-      ${input("Wdh.","reps",set.reps,"numeric")}
-      ${input("RPE","rpe",set.rpe,"numeric")}
-    </div></div>`;
-  }
-  if(e.type==="body"){
-    return `<div class="entryCard"><div class="fieldGrid two">
-      ${input("Wdh.","reps",set.reps,"numeric")}
-      ${input("RPE","rpe",set.rpe,"numeric")}
-    </div></div>`;
-  }
-  if(e.type==="time"){
-    return `<div class="entryCard"><div class="fieldGrid">
-      ${input("kg/Hand","kg",set.kg)}
-      ${input("Sek.","sec",set.sec,"numeric")}
-      ${input("RPE","rpe",set.rpe,"numeric")}
-    </div></div>`;
-  }
-  return `<div class="entryCard"><div class="fieldGrid">
-    ${input("kg","kg",set.kg)}
-    ${input("Wdh.","reps",set.reps,"numeric")}
-    ${input("RPE","rpe",set.rpe,"numeric")}
-  </div></div>`;
-}
-
-function sideBlock(label, side, set, measure, copy=false){
-  const unit=measure==="sec"?"Sek.":"Wdh.";
-  const value=set[measure+side]||"";
-  const rpe=set["rpe"+side]||"";
-  return `<div class="sideBox">
-    <div class="sideHead"><b>${label}</b>${copy?'<button class="copyBtn" type="button" id="copySide">= andere Seite</button>':""}</div>
-    <div class="fieldGrid two">
-      ${input(unit,measure+side,value,"numeric")}
-      ${input("RPE","rpe"+side,rpe,"numeric")}
+function bandChooser(exIndex, setIndex, selected=[]){
+  return `<div class="bandWrap">
+    <span>Bandfarbe(n) – mehrere möglich</span>
+    <div class="bandChoices">
+      ${BANDS.map(b=>`<label class="bandChip">
+        <input type="checkbox" data-band="${b}" data-ex="${exIndex}" data-set="${setIndex}" ${selected.includes(b)?"checked":""}>
+        <span>${b}</span>
+      </label>`).join("")}
     </div>
   </div>`;
 }
 
-function bindEntry(e,round){
-  const current=S.d.exercises[S.flow[S.step].index].sets[round];
-  $("entry").querySelectorAll("input,select").forEach(el=>{
-    el.oninput=ev=>{ current[ev.target.dataset.f]=ev.target.value; };
-    el.onchange=ev=>{ current[ev.target.dataset.f]=ev.target.value; };
-  });
-  const copy=$("copySide");
-  if(copy){
-    copy.onclick=()=>{
-      if(e.type==="unilateralTime"){
-        current.secR=current.secL; current.rpeR=current.rpeL;
-      } else {
-        current.repsR=current.repsL; current.rpeR=current.rpeL;
-      }
-      renderStep();
-    };
+function setRow(e,set,si){
+  const num=si+1;
+  if(e.type==="weight"){
+    return `<div class="setRow"><div class="setNo">${num}</div>
+      ${input("kg","kg",set.kg)}
+      ${input("Wdh.","reps",set.reps,"numeric")}
+      ${input("RPE","rpe",set.rpe,"numeric")}
+    </div>`;
   }
+  if(e.type==="unilateralWeight"){
+    return `<div class="setRow uni"><div class="setNo">${num}</div>
+      ${input("kg/Hand","kg",set.kg)}
+      ${input("Wdh. L","repsL",set.repsL,"numeric")}
+      ${input("Wdh. R","repsR",set.repsR,"numeric","rightCol")}
+      ${input("RPE","rpe",set.rpe,"numeric","rightCol")}
+    </div>`;
+  }
+  if(e.type==="unilateralBody"){
+    return `<div class="setRow"><div class="setNo">${num}</div>
+      ${input("Wdh. L","repsL",set.repsL,"numeric")}
+      ${input("Wdh. R","repsR",set.repsR,"numeric")}
+      ${input("RPE","rpe",set.rpe,"numeric")}
+    </div>`;
+  }
+  if(e.type==="band"){
+    return `${bandChooser("",si,set.bands||[])}
+      <div class="setRow"><div class="setNo">${num}</div>
+      <div></div>${input("Wdh.","reps",set.reps,"numeric")}${input("RPE","rpe",set.rpe,"numeric")}</div>`;
+  }
+  if(e.type==="unilateralBand"){
+    return `${bandChooser("",si,set.bands||[])}
+      <div class="setRow"><div class="setNo">${num}</div>
+      ${input("Wdh. L","repsL",set.repsL,"numeric")}
+      ${input("Wdh. R","repsR",set.repsR,"numeric")}
+      ${input("RPE","rpe",set.rpe,"numeric")}</div>`;
+  }
+  return "";
 }
 
-function renderStep(){
-  const item=S.flow[S.step];
-  if(!item){ show("check"); return; }
-  if(item.kind==="pause"){ renderPause(item); return; }
+function exerciseCard(e, exIndex, data){
+  return `<div class="exerciseCard" data-ex="${exIndex}">
+    <div class="exHead">
+      <div><small>${e.code}</small><h2>${e.name}</h2></div>
+      <a href="${e.video}" target="_blank" rel="noopener">Video</a>
+    </div>
+    <p class="muted">${e.why}</p>
+    <p class="cue">${e.cue}</p>
+    <p class="muted">${formatPrev(e)}</p>
+    <div class="setTable">
+      ${data.sets.map((s,i)=>`<div class="setWrap" data-set="${i}">${setRow(e,s,i)}</div>`).join("")}
+    </div>
+  </div>`;
+}
 
-  const e=P[S.p][item.index];
-  const set=S.d.exercises[item.index].sets[item.round];
-
-  $("progress").textContent=e.g==="Finisher" ? "Finisher" : `Supersatz ${e.g}`;
-  $("supersetLabel").textContent=e.g==="Finisher" ? "Finisher" : `Supersatz ${e.g}`;
-  $("roundLabel").textContent=`Runde ${item.round+1} von ${e.s}`;
-  $("block").textContent=e.b;
-  $("name").textContent=e.n;
-  $("why").textContent=e.w;
-  $("cue").textContent=e.c;
-  $("video").href=e.v;
-  $("prev").textContent=previousRoundValue(e,item.round);
-  $("entry").innerHTML=renderEntry(e,set);
-  bindEntry(e,item.round);
-
-  $("prevBtn").disabled=S.step===0;
-  $("nextBtn").textContent=(S.step===S.flow.length-1) ? "Abschluss" : "Weiter";
+function renderGroup(){
+  const g=PLAN[STATE.plan].groups[STATE.group];
+  const gd=STATE.session.groups[STATE.group];
+  $("progress").textContent=`${STATE.group+1} von ${PLAN[STATE.plan].groups.length}`;
+  $("groupTitle").textContent=g.title;
+  $("pair").innerHTML=g.exercises.map((e,i)=>exerciseCard(e,i,gd.exercises[i])).join("");
+  bindGroupInputs();
+  $("prevGroup").disabled=STATE.group===0;
+  $("nextGroup").textContent=STATE.group===PLAN[STATE.plan].groups.length-1 ? "Zum Finisher 🔥" : "Weiter";
   show("train");
 }
 
-function renderPause(item){
-  clearInterval(S.timerHandle);
-  S.timerSeconds=60;
-  updateTimer(60);
-  $("pauseLabel").textContent=item.group==="Finisher" ? `Finisher · Runde ${item.round+1} geschafft` : `Supersatz ${item.group} · Runde ${item.round+1} geschafft`;
-  const next=P[S.p][item.nextIndex];
-  $("pauseNext").textContent=next ? `Danach: ${next.n} · Runde ${item.round+2}` : "";
-  show("pause");
-  startTimer();
-}
-
-function updateTimer(n){
-  S.timerSeconds=Math.max(0,n);
-  $("timer").textContent=`${String(Math.floor(S.timerSeconds/60)).padStart(2,"0")}:${String(S.timerSeconds%60).padStart(2,"0")}`;
-}
-function startTimer(){
-  clearInterval(S.timerHandle);
-  let n=S.timerSeconds;
-  S.timerHandle=setInterval(()=>{
-    n-=1; updateTimer(n);
-    if(n<=0){
-      clearInterval(S.timerHandle);
-      if(navigator.vibrate) navigator.vibrate([200,100,200]);
-    }
-  },1000);
-}
-document.querySelectorAll(".preset").forEach(b=>b.onclick=()=>{updateTimer(+b.dataset.s);startTimer();});
-$("skipPause").onclick=()=>{clearInterval(S.timerHandle);S.step++;renderStep();};
-
-$("nextBtn").onclick=()=>{S.step++;renderStep();};
-$("prevBtn").onclick=()=>{
-  if(S.step>0){
-    S.step--;
-    if(S.flow[S.step]?.kind==="pause" && S.step>0) S.step--;
-    renderStep();
+function copySet1(exData, e, field, oldValue, newValue){
+  if(!["kg","reps","repsL","repsR"].includes(field)) return;
+  for(let i=1;i<3;i++){
+    const target=exData.sets[i];
+    if(target[field]==="" || target[field]===oldValue) target[field]=newValue;
   }
+}
+
+function copyBandsFromSet1(exData, oldBands, newBands){
+  for(let i=1;i<3;i++){
+    const t=exData.sets[i];
+    const same = JSON.stringify(t.bands||[])===JSON.stringify(oldBands||[]);
+    if(!t.bands?.length || same) t.bands=[...newBands];
+  }
+}
+
+function bindGroupInputs(){
+  const gd=STATE.session.groups[STATE.group];
+  const g=PLAN[STATE.plan].groups[STATE.group];
+
+  document.querySelectorAll(".exerciseCard").forEach(card=>{
+    const exIndex=+card.dataset.ex;
+    const exData=gd.exercises[exIndex];
+    const e=g.exercises[exIndex];
+
+    card.querySelectorAll(".setWrap").forEach(wrap=>{
+      const si=+wrap.dataset.set;
+      const set=exData.sets[si];
+
+      wrap.querySelectorAll("input[data-field]").forEach(el=>{
+        el.oninput=()=>{
+          const f=el.dataset.field, old=set[f]||"";
+          set[f]=el.value;
+          if(si===0) copySet1(exData,e,f,old,el.value);
+          if(si===0) renderGroup();
+        };
+      });
+
+      wrap.querySelectorAll("input[data-band]").forEach(cb=>{
+        cb.onchange=()=>{
+          const old=[...(set.bands||[])];
+          set.bands=BANDS.filter(b=>wrap.querySelector(`input[data-band="${b}"]`)?.checked);
+          if(si===0){
+            copyBandsFromSet1(exData,old,set.bands);
+            renderGroup();
+          }
+        };
+      });
+    });
+  });
+}
+
+$("prevGroup").onclick=()=>{ if(STATE.group>0){STATE.group--;renderGroup();} };
+$("nextGroup").onclick=()=>{
+  if(STATE.group < PLAN[STATE.plan].groups.length-1){ STATE.group++; renderGroup(); }
+  else openFinisher();
 };
 $("homeBtn").onclick=()=>show("home");
-$("backBtn").onclick=()=>show("train");
 
+// Rest timer
+function updateRest(n){
+  STATE.restSeconds=Math.max(0,n);
+  $("restTimer").textContent=`${String(Math.floor(n/60)).padStart(2,"0")}:${String(n%60).padStart(2,"0")}`;
+}
+function startRest(){
+  clearInterval(STATE.restHandle);
+  let n=STATE.restSeconds;
+  STATE.restHandle=setInterval(()=>{
+    n--; updateRest(n);
+    if(n<=0){clearInterval(STATE.restHandle); if(navigator.vibrate) navigator.vibrate([150,80,150]);}
+  },1000);
+}
+document.querySelectorAll(".restPreset").forEach(b=>b.onclick=()=>{updateRest(+b.dataset.s);startRest();});
+$("restStart").onclick=()=>startRest();
+
+// Finisher
+function openFinisher(){
+  clearInterval(STATE.finHandle);
+  STATE.finIndex=0; STATE.finRound=0; STATE.finSeconds=30; STATE.finRunning=false;
+  $("finisherName").textContent=PLAN[STATE.plan].finisher.title;
+  renderFinisher();
+  show("finisher");
+}
+function renderFinisher(){
+  const f=PLAN[STATE.plan].finisher;
+  const e=f.exercises[STATE.finIndex];
+  $("finRound").textContent=`Runde ${STATE.finRound+1} von ${f.rounds}`;
+  $("finStep").textContent=`${STATE.finIndex+1} von ${f.exercises.length}`;
+  $("finExercise").textContent=e.name;
+  $("finCue").textContent=e.cue;
+  $("finTimer").textContent=`00:${String(STATE.finSeconds).padStart(2,"0")}`;
+  $("finList").innerHTML=f.exercises.map((x,i)=>`<div class="finListItem ${i===STATE.finIndex?"active":""}">${i+1}. ${x.name}</div>`).join("");
+}
+function nextFinisherStep(){
+  const f=PLAN[STATE.plan].finisher;
+  STATE.finSeconds=30;
+  if(STATE.finIndex < f.exercises.length-1){
+    STATE.finIndex++;
+    intervalSignal();
+  } else{
+    STATE.finIndex=0;
+    if(STATE.finRound < f.rounds-1){
+      STATE.finRound++;
+      intervalSignal();
+    } else{
+      clearInterval(STATE.finHandle); STATE.finRunning=false;
+      STATE.session.finisher.completed=true;
+      finishSignal();
+      $("finExercise").textContent="Finisher geschafft 🔥";
+      $("finCue").textContent="6 Minuten erledigt.";
+      $("finTimer").textContent="00:00";
+      return;
+    }
+  }
+  renderFinisher();
+}
+function startFinisher(){
+  if(STATE.finRunning) return;
+  ensureAudio();
+  STATE.finRunning=true;
+  STATE.finHandle=setInterval(()=>{
+    STATE.finSeconds--;
+    $("finTimer").textContent=`00:${String(Math.max(0,STATE.finSeconds)).padStart(2,"0")}`;
+    if(STATE.finSeconds<=0){ nextFinisherStep(); }
+  },1000);
+}
+$("finStart").onclick=startFinisher;
+$("finPause").onclick=()=>{clearInterval(STATE.finHandle);STATE.finRunning=false;};
+$("finReset").onclick=openFinisher;
+$("finSkip").onclick=()=>{clearInterval(STATE.finHandle);STATE.finRunning=false;nextFinisherStep();};
+$("finisherBack").onclick=()=>{STATE.group=PLAN[STATE.plan].groups.length-1;renderGroup();};
+$("toCheck").onclick=()=>show("check");
+$("backBtn").onclick=openFinisher;
+
+// Check/save
 ["hws","knee","energy"].forEach(k=>{
   $(k+"In").oninput=()=>$(k+"Out").textContent=$(k+"In").value;
 });
-
 $("save").onclick=()=>{
-  S.d.hws=+$("hwsIn").value;
-  S.d.knee=+$("kneeIn").value;
-  S.d.energy=+$("energyIn").value;
-  S.d.note=$("note").value;
-  const d=D();
-  d.sessions=d.sessions||[];
-  d.sessions.push(S.d);
-  saveStore(d);
+  STATE.session.hws=+$("hwsIn").value;
+  STATE.session.knee=+$("kneeIn").value;
+  STATE.session.energy=+$("energyIn").value;
+  STATE.session.note=$("note").value;
+  const d=store(); d.sessions=d.sessions||[]; d.sessions.push(STATE.session);
+  writeStore(d);
   $("note").value="";
   show("home");
 };
 
-function exp(){
+// Backup
+function exportData(){
   const a=document.createElement("a");
-  const b=new Blob([JSON.stringify(D(),null,2)],{type:"application/json"});
-  a.href=URL.createObjectURL(b);
+  const blob=new Blob([JSON.stringify(store(),null,2)],{type:"application/json"});
+  a.href=URL.createObjectURL(blob);
   a.download=`project-strong-${new Date().toISOString().slice(0,10)}.json`;
   a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
-$("export").onclick=exp;
-$("exportTop").onclick=exp;
+$("export").onclick=exportData; $("exportTop").onclick=exportData;
 $("import").onchange=async e=>{
   try{
     const parsed=JSON.parse(await e.target.files[0].text());
-    if(!parsed || !Array.isArray(parsed.sessions)) throw new Error("Ungültiges Backup");
-    saveStore(parsed);
-    alert("Backup importiert.");
-  }catch{
-    alert("Datei konnte nicht gelesen werden.");
-  }
+    if(!parsed || !Array.isArray(parsed.sessions)) throw new Error();
+    writeStore(parsed); alert("Backup importiert.");
+  }catch{ alert("Datei konnte nicht gelesen werden."); }
   e.target.value="";
 };
 
-R.forEach(([a,b])=>{
-  const x=document.createElement("div");
-  x.className="resetitem";
-  x.innerHTML=`<b>${a}</b><div>${b}</div>`;
-  $("resetList").appendChild(x);
+// Reset
+RESET.forEach(([a,b])=>{
+  const x=document.createElement("div"); x.className="resetitem"; x.innerHTML=`<b>${a}</b><div>${b}</div>`; $("resetList").appendChild(x);
 });
-$("resetStart").onclick=()=>show("reset");
-$("resetBack").onclick=()=>show("home");
+$("resetStart").onclick=()=>show("reset"); $("resetBack").onclick=()=>show("home");
 
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
-home();
+refreshHome();

@@ -13,7 +13,7 @@
 <header>
   <div>
     <h1>Project Strong</h1>
-    <p>Trainingsblock 2 · Elisabeth · v0.2</p>
+    <p>Block 3 · Ski Ready · v0.3</p>
   </div>
   <button id="exportTop" aria-label="Backup exportieren">⇩</button>
 </header>
@@ -24,6 +24,12 @@
       <div class="card"><span>HWS</span><b id="hws">–</b></div>
       <div class="card"><span>Knie</span><b id="knee">–</b></div>
       <div class="card"><span>Einheiten</span><b id="count">0</b></div>
+    </div>
+
+    <div class="hero card">
+      <small>22.10.–04.12.2026</small>
+      <h2>⛷️ Ski Ready</h2>
+      <p>2× pro Woche · ca. 60 Minuten · Kraft, Bremskraft, Beinachse & Ski-Ausdauer</p>
     </div>
 
     <button class="big primary start" data-plan="A">Training A starten</button>
@@ -47,51 +53,70 @@
 
   <section id="train" class="view">
     <div class="top">
-      <button id="homeBtn" aria-label="Zur Startseite">←</button>
+      <button id="homeBtn">←</button>
       <div>
         <h2 id="title"></h2>
         <p id="progress"></p>
       </div>
     </div>
 
-    <div class="roundBadge">
-      <span id="supersetLabel"></span>
-      <b id="roundLabel"></b>
+    <div class="sectionBadge">
+      <span id="groupTitle"></span>
+      <b>3 Runden</b>
     </div>
 
-    <div class="card">
-      <div class="exhead">
-        <div>
-          <small id="block"></small>
-          <h2 id="name"></h2>
-        </div>
-        <a id="video" target="_blank" rel="noopener">Video</a>
+    <div id="pair"></div>
+
+    <div class="card compactTimer">
+      <div>
+        <span>Pause zwischen Runden</span>
+        <b id="restTimer">01:00</b>
       </div>
-      <p id="why"></p>
-      <p id="cue" class="cue"></p>
-      <p id="prev" class="muted"></p>
+      <div class="row">
+        <button class="secondary restPreset" data-s="60">60 s</button>
+        <button class="secondary restPreset" data-s="90">90 s</button>
+        <button id="restStart" class="primary">Start</button>
+      </div>
     </div>
-
-    <div id="entry"></div>
 
     <div class="row sticky">
-      <button id="prevBtn" class="secondary">Zurück</button>
-      <button id="nextBtn" class="primary">Weiter</button>
+      <button id="prevGroup" class="secondary">Zurück</button>
+      <button id="nextGroup" class="primary">Weiter</button>
     </div>
   </section>
 
-  <section id="pause" class="view">
-    <div class="pauseCard">
-      <small id="pauseLabel"></small>
-      <h2>Pause</h2>
-      <b id="timer">01:00</b>
-      <p id="pauseNext" class="muted"></p>
-      <div class="row">
-        <button class="secondary preset" data-s="60">60 s</button>
-        <button class="secondary preset" data-s="90">90 s</button>
+  <section id="finisher" class="view">
+    <div class="top">
+      <button id="finisherBack">←</button>
+      <div>
+        <h2>🔥 Finisher</h2>
+        <p id="finisherName">6 Minuten</p>
       </div>
-      <button id="skipPause" class="big primary">Weiter</button>
     </div>
+
+    <div class="finisherCard">
+      <div class="finMeta">
+        <span id="finRound">Runde 1 von 3</span>
+        <span id="finStep">1 von 4</span>
+      </div>
+      <h2 id="finExercise"></h2>
+      <p id="finCue"></p>
+      <b id="finTimer">00:30</b>
+
+      <div class="row">
+        <button id="finStart" class="primary">Start</button>
+        <button id="finPause" class="secondary">Pause</button>
+        <button id="finReset" class="secondary">Reset</button>
+      </div>
+      <button id="finSkip" class="big secondary">Nächste Übung</button>
+    </div>
+
+    <div class="card">
+      <h3>Übungen</h3>
+      <div id="finList"></div>
+    </div>
+
+    <button id="toCheck" class="big primary">Finisher fertig → Abschluss-Check</button>
   </section>
 
   <section id="check" class="view">

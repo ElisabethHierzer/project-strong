@@ -18,7 +18,7 @@ A: {
     {
       id:"C", title:"Supersatz C",
       exercises:[
-        {code:"C1",name:"Lateral Step-Down",type:"unilateralBody",reps:"8–10/Seite",start:"Körpergewicht",why:"Kontrolliertes Abfangen für Knie und Ski-Abfahrten.",cue:"Von niedriger Stufe langsam absenken, Becken stabil, Knie folgt Fußrichtung.",video:"https://www.youtube.com/results?search_query=lateral+step+down+exercise+technique"},
+        {code:"C1",name:"Single-Leg Sit-to-Stand",type:"unilateralBody",reps:"6–8/Seite",start:"Körpergewicht",why:"Einbeinige Bremskraft und Kniekontrolle für die Skisaison.",cue:"Von der Bank auf einem Bein kontrolliert aufstehen und wieder absetzen. 3 Sekunden langsam absenken, Becken stabil halten. Bei Bedarf den freien Fuß leicht zur Unterstützung aufsetzen.",video:"https://www.youtube.com/results?search_query=single+leg+sit+to+stand+bench+technique"},
         {code:"C2",name:"Pallof Press",type:"unilateralBand",reps:"10–12/Seite",start:"Band nach Gefühl",why:"Anti-Rotation und stabile Körpermitte.",cue:"Rippen unten, Becken ruhig, kontrolliert ausstrecken.",video:"https://www.youtube.com/results?search_query=pallof+press+technique"}
       ]
     }
